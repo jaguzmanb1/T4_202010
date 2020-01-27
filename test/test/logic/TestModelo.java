@@ -24,6 +24,7 @@ public class TestModelo {
 
 	@Test
 	public void testModelo() {
+		setUp1();
 		assertTrue(modelo!=null);
 		assertEquals(0, modelo.darTamano());  // Modelo con 0 elementos presentes.
 	}
@@ -31,24 +32,34 @@ public class TestModelo {
 	@Test
 	public void testDarTamano() {
 		// TODO
-		
-		assertEquals(0, modelo.darTamano());
+		setUp2();
+		assertEquals(100, modelo.darTamano());
 	}
 
 	@Test
 	public void testAgregar() {
 		// TODO Completar la prueba
+		Integer prueba = 100;
+		modelo.agregar(prueba);
+		assertEquals(prueba, modelo.buscar(prueba));
+		
 	}
 
 	@Test
 	public void testBuscar() {
 		setUp2();
 		// TODO Completar la prueba
+		assertEquals((Integer)41, modelo.buscar(41));
+		assertEquals((Integer)24, modelo.buscar(24));
+
 	}
 
 	@Test
 	public void testEliminar() {
 		setUp2();
+		assertEquals((Integer)41, modelo.eliminar(41));
+		assertEquals(null, modelo.eliminar(41));
+		
 		// TODO Completar la prueba
 		
 	}
