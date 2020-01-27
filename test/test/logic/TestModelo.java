@@ -18,7 +18,7 @@ public class TestModelo {
 
 	public void setUp2() {
 		for(int i =0; i< CAPACIDAD;i++){
-			modelo.agregar(""+i);
+			modelo.agregar(i);
 		}
 	}
 
@@ -31,6 +31,8 @@ public class TestModelo {
 	@Test
 	public void testDarTamano() {
 		// TODO
+		
+		assertEquals(0, modelo.darTamano());
 	}
 
 	@Test
