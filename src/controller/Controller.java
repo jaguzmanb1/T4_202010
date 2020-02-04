@@ -28,7 +28,7 @@ public class Controller {
 		Scanner lector = new Scanner(System.in);
 		boolean fin = false;
 		int dato = 0;
-		Integer respuesta = null;
+		String respuesta = null;
 
 		while( !fin ){
 			view.printMenu();
@@ -43,14 +43,6 @@ public class Controller {
 					break;
 
 				case 2:
-					view.printMessage("--------- \nDar numero a ingresar: ");
-					dato = lector.nextInt();
-					modelo.agregar(dato);
-					view.printMessage("Dato agregado");
-					view.printMessage("Numero actual de elementos " + modelo.darTamano() + "\n---------");						
-					break;
-
-				case 3:
 					view.printMessage("--------- \nDar numero a buscar: ");
 					dato = lector.nextInt();
 					respuesta = modelo.buscar(dato);
@@ -64,29 +56,8 @@ public class Controller {
 					}
 					view.printMessage("Numero actual de elementos " + modelo.darTamano() + "\n---------");						
 					break;
-
-				case 4:
-					view.printMessage("--------- \nDar numero a eliminar: ");
-					dato = lector.nextInt();
-					respuesta = modelo.eliminar(dato);
-					if ( respuesta == dato )
-					{
-						view.printMessage("Dato eliminado "+ respuesta);
-					}
-					else
-					{
-						view.printMessage("Dato NO eliminado");							
-					}
-					view.printMessage("Numero actual de elementos " + modelo.darTamano() + "\n---------");						
-					break;
-
-				case 5: 
-					view.printMessage("--------- \nContenido del Arreglo: ");
-					view.printModelo(modelo);
-					view.printMessage("Numero actual de elementos " + modelo.darTamano() + "\n---------");						
-					break;	
 					
-				case 6: 
+				case 3: 
 					view.printMessage("--------- \n Hasta pronto !! \n---------"); 
 					lector.close();
 					fin = true;

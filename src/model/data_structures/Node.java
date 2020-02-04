@@ -11,26 +11,25 @@ public class Node<O>{
 		anterior = null;
 		siguiente = null;
 		this.elemento = elemento;
-	
+
 	}
-	
-	public O darElemento( )
-    {
-        return elemento;
-    }
-	
-    public void desconectarNodo( ){
-        Node<O> ant = anterior;
-        Node<O> sig = siguiente;
-        anterior = null;
-        siguiente = null;
-        ant.siguiente = sig;
-        if( sig != null )
-        {
-            sig.anterior = ant;
-        }
-    }
-	
+
+	public O darElemento( ){
+		return elemento;
+	}
+
+	public void desconectarNodo( ){
+		Node<O> ant = anterior;
+		Node<O> sig = siguiente;
+		anterior = null;
+		siguiente = null;
+		ant.siguiente = sig;
+		if( sig != null )
+		{
+			sig.anterior = ant;
+		}
+	}
+
 
 	public Node<O> darAnterior() {
 		return anterior;

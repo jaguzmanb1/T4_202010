@@ -10,7 +10,7 @@ public class Comparendo implements Comparable<Comparendo>{
 	private String descInfraccion;
 	private String localidad;
 
-	
+
 	public Comparendo(int pObjectId, String pFechaHora, String pClaseVehiculo, String pTipoServicio, String pInfraccion, String pDescInfraccion, String pLocalidad) {
 		objectId = pObjectId;
 		fechaHora = pFechaHora;
@@ -20,33 +20,37 @@ public class Comparendo implements Comparable<Comparendo>{
 		descInfraccion = pDescInfraccion;
 		localidad = pLocalidad;
 	}
-	
+
 	public int darObjectId() {
 		return objectId;
 	}
-	
+
 	public String darFecha() {
 		return fechaHora;
 	}
-	
+
 	public String darClase() {
 		return claseVehiculo;
 	}
-	
+
 	public String tipoServicio() {
 		return tipoServicio;
 	}
-	
+
 	public String darInfraccion() {
 		return infraccion;
 	}
-	
+
 	public String darDescripcion() {
 		return descInfraccion;
 	}
-	
+
 	public String darLocalidad() {
 		return localidad;
+	}
+
+	public String toString() {
+		return Integer.toString(objectId) + " - " + fechaHora + " - " + infraccion + " - " + claseVehiculo + " - " + tipoServicio + " - " + localidad;
 	}
 
 	@Override
@@ -57,7 +61,7 @@ public class Comparendo implements Comparable<Comparendo>{
 		else {
 			return -1;
 		}
-		
+
 	}
 
 }

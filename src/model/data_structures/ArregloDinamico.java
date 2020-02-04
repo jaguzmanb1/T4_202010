@@ -8,94 +8,81 @@ package model.data_structures;
  *
  */
 public class ArregloDinamico<T extends Comparable<T>> implements IArregloDinamico<T> {
-		/**
-		 * Capacidad maxima del arreglo
-		 */
-        private int tamanoMax;
-		/**
-		 * Numero de elementos presentes en el arreglo (de forma compacta desde la posicion 0)
-		 */
-        private int tamanoAct;
-        /**
-         * Arreglo de elementos de tamaNo maximo
-         */
-        private T elementos[ ];
 
-        /**
-         * Construir un arreglo con la capacidad maxima inicial.
-         * @param max Capacidad maxima inicial
-         */
-		@SuppressWarnings("unchecked")
-		public ArregloDinamico( int max )
-        {
-               elementos = (T[])new Comparable[max];
-               tamanoMax = max;
-               tamanoAct = 0;
-        }
-        
-		public void agregar( T dato )
-        {
-               if ( tamanoAct == tamanoMax )
-               {  // caso de arreglo lleno (aumentar tamaNo)
-                    tamanoMax = 2 * tamanoMax;
-                    T [ ] copia = elementos;
-                    elementos = (T[])new Comparable[tamanoMax];
-                    for ( int i = 0; i < tamanoAct; i++)
-                    {
-                     	 elementos[i] = copia[i];
-                    } 
-            	    System.out.println("Arreglo lleno: " + tamanoAct + " - Arreglo duplicado: " + tamanoMax);
-               }	
-               elementos[tamanoAct] = dato;
-               tamanoAct++;
-       }
+	private int tamanoMax;
 
-		public int darCapacidad() {
-			return tamanoMax;
-		}
+	private int tamanoAct;
 
-		public int darTamano() {
-			return tamanoAct;
-		}
+	private T elementos[ ];
 
-		public T darElemento(int i) {
-			return elementos[i];
-		}
+	@SuppressWarnings("unchecked")
+	public ArregloDinamico( int max )
+	{
+		elementos = (T[])new Comparable[max];
+		tamanoMax = max;
+		tamanoAct = 0;
+	}
 
-		public T buscar(T dato) {
-			// TODO implementar
-			// Recomendacion: Usar el criterio de comparacion natural (metodo compareTo()) definido en Strings.
-			
-			for (int i = 0 ; i < elementos.length ; i ++ ) {
-				if (elementos[i] != null){
-					if (dato.compareTo(elementos[i]) == 0) {
-						return elementos[i];
-					}
-				}
-			}
-			
-			return null;
-		}
+	public void agregar( T dato )
+	{
+		if ( tamanoAct == tamanoMax )
+		{
+			tamanoMax = 2 * tamanoMax;
+			T [ ] copia = elementos;
+			elementos = (T[])new Comparable[tamanoMax];
+			for ( int i = 0; i < tamanoAct; i++){
+				elementos[i] = copia[i];
+			} 
+			System.out.println("Arreglo lleno: " + tamanoAct + " - Arreglo duplicado: " + tamanoMax);
+		}	
+		elementos[tamanoAct] = dato;
+		tamanoAct++;
+	}
 
-		public T eliminar(T dato) {
-			// TODO implementar
-			// Recomendacion: Usar el criterio de comparacion natural (metodo compareTo()) definido en Strings.
-			int indiceEliminar = 0;
-			T datoEliminar = null;
-			int lenght = elementos.length;
-			boolean change = false;
-			
-			for (int i = 0 ; i < elementos.length && change == false ; i ++ ) {
+	public int darCapacidad() {
+		return tamanoMax;
+	}
+
+	public int darTamano() {
+		return tamanoAct;
+	}
+
+	public T darElemento(int i) {
+		return elementos[i];
+	}
+
+	public T buscar(T dato) {
+		// TODO implementar
+		// Recomendacion: Usar el criterio de comparacion natural (metodo compareTo()) definido en Strings.
+
+		for (int i = 0 ; i < elementos.length ; i ++ ) {
+			if (elementos[i] != null){
 				if (dato.compareTo(elementos[i]) == 0) {
-					indiceEliminar = i;
-					datoEliminar = elementos[i];
-					System.arraycopy(elementos, i + 1, elementos, i, lenght - (i+1));
-					tamanoAct = tamanoAct - 1;
-					change = true;
+					return elementos[i];
 				}
 			}
-			
-			return datoEliminar;
 		}
+
+		return null;
+	}
+
+	public T eliminar(T dato) {
+		// TODO implementar
+		// Recomendacion: Usar el criterio de comparacion natural (metodo compareTo()) definido en Strings.
+		T datoEliminar = null;
+		int lenght = elementos.length;
+		boolean change = false;
+
+		for (int i = 0 ; i < elementos.length && change == false ; i ++ ) {
+			if (dato.compareTo(elementos[i]) == 0) {
+				datoEliminar = elementos[i];
+				System.arraycopy(elementos, i + 1, elementos, i, lenght - (i+1));
+				tamanoAct = tamanoAct - 1;
+				change = true;
+			}
+		}
+
+		return datoEliminar;
+	}
 
 }

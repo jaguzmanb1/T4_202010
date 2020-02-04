@@ -2,7 +2,7 @@ package model.data_structures;
 
 import model.data_structures.Node;
 
-public class ListaEncadenada<T>{
+public class ListaEncadenada <T extends Comparable>{
 
 	private Node<T> primero;
 
@@ -37,10 +37,10 @@ public class ListaEncadenada<T>{
 		return null;
 	}
 	
-	public T buscarPorId(T modelo){
+	public String buscarPorId(T modelo){
 		for ( Node<T> p = primero ; p != null ; p = p.darSiguiente( ) ){
-			if ( p.darElemento( ).equals(modelo) ){
-				return p.darElemento( );
+			if ( p.darElemento().compareTo(modelo) == 0 ){
+				return p.darElemento( ).toString();
 			}
 		}
 		return null;
