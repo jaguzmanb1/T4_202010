@@ -1,44 +1,68 @@
 package model.data_structures;
-public class Node<O> {
+
+public class Node<O>{
 
 	private Node<O> anterior;
-	private O key;
+	private O elemento;
 	private Node<O> siguiente;
 
-	public Node(Node<O> anterior, O key, Node<O> siguiente) {
+	public Node(O elemento) {
 		super();
-		this.anterior = anterior;
-		this.key = key;
-		this.siguiente = siguiente;
+		anterior = null;
+		siguiente = null;
+		this.elemento = elemento;
+	
 	}
+	
+	public O darElemento( )
+    {
+        return elemento;
+    }
+	
+    public void desconectarNodo( ){
+        Node<O> ant = anterior;
+        Node<O> sig = siguiente;
+        anterior = null;
+        siguiente = null;
+        ant.siguiente = sig;
+        if( sig != null )
+        {
+            sig.anterior = ant;
+        }
+    }
+	
 
-	public Node<O> getAnterior() {
+	public Node<O> darAnterior() {
 		return anterior;
 	}
 
-	public void setAnterior(Node<O> anterior) {
-		this.anterior = anterior;
-	}
-
-	public O getKey() {
-		return key;
-	}
-
-	public void setKey(O key) {
-		this.key = key;
-	}
-
-	public Node<O> getSiguiente() {
+	public Node<O> darSiguiente() {
 		return siguiente;
 	}
 
-	public void setSiguiente(Node<O> siguiente) {
-		this.siguiente = siguiente;
+	public void insertarAntes( Node<O> nodo ){
+		nodo.siguiente = this;
+		nodo.anterior = anterior;
+		if( anterior != null )
+			anterior.siguiente = nodo;
+		anterior = nodo;
 	}
 
-	@Override
-	public String toString() {
-		return this.key + (this.siguiente == null ? "" : ", ");
+	public void insertarDespues( Node<O> nodo ){
+		nodo.siguiente = siguiente;
+		nodo.anterior = this;
+		if( siguiente != null )
+			siguiente.anterior = nodo;
+		siguiente = nodo;
+	}
+
+	public Node<O> popPrimero( ){
+		Node<O> tmp = siguiente;
+		siguiente = null;
+		if( tmp != null ){
+			tmp.anterior = null;
+		}
+		return tmp;
 	}
 
 }

@@ -1,6 +1,6 @@
 package model.logic;
 
-public class Comparendo {
+public class Comparendo implements Comparable<Comparendo>{
 
 	private int objectId;
 	private String fechaHora;
@@ -47,6 +47,17 @@ public class Comparendo {
 	
 	public String darLocalidad() {
 		return localidad;
+	}
+
+	@Override
+	public int compareTo(Comparendo o) {
+		if (o.darObjectId() == this.objectId) {
+			return 0;
+		}
+		else {
+			return -1;
+		}
+		
 	}
 
 }

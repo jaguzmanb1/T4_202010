@@ -3,7 +3,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
 import model.data_structures.ArregloDinamico;
 import model.data_structures.IArregloDinamico;
-import model.data_structures.DoubleLinkedList;
+import model.data_structures.ListaEncadenada;
 import model.logic.Comparendo;
 
 import java.io.BufferedReader;
@@ -23,13 +23,13 @@ public class Modelo {
 	 * Atributos del modelo del mundo
 	 */	
 
-	private DoubleLinkedList<Comparendo> datos;
+	private ListaEncadenada<Comparendo> datos;
 	/**
 	 * Constructor del modelo del mundo con capacidad predefinida
 	 */
 	public Modelo()
 	{
-		datos = new DoubleLinkedList<Comparendo>();
+		datos = new ListaEncadenada<Comparendo>();
 	}
 
 	/**
@@ -37,9 +37,9 @@ public class Modelo {
 	 * @param dato Dato a buscar
 	 * @return dato encontrado
 	 */
-	public void buscar(int dato)
+	public Comparendo buscar(int dato)
 	{
-		//return datos.buscar(dato);
+		return datos.buscar(dato);
 	}
 
 
@@ -82,7 +82,7 @@ public class Modelo {
 			localidad = arr.getJSONObject(i).getJSONObject("properties").getString("LOCALIDAD");
 
 			comparendo = new Comparendo(id, fecha, clase, tipo, infraccion, descripcion, localidad);
-			datos.pushBack(comparendo);
+			datos.insertarAlFinal(comparendo);
 		}
 
 	}
