@@ -39,7 +39,7 @@ public class Controller {
 					view.printMessage("--------- \nRealizar carga comparendos: ");
 				    modelo = new Modelo(); 
 				    modelo.cargarDatos();
-				    view.printMessage("Arreglo Dinamico creado");
+				    view.printMessage("Carga completada, hay un total de " + modelo.darTamano() + " registros");
 					break;
 
 				case 2:

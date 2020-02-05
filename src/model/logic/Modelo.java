@@ -59,7 +59,6 @@ public class Modelo {
 			while ((st = br.readLine()) != null) 
 				js += st;
 			
-			System.out.println(js);
 			JSONObject obj = new JSONObject(js);
 			JSONArray arr = obj.getJSONArray("features");
 
