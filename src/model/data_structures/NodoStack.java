@@ -32,6 +32,6 @@ public class NodoStack<T> {
 		return pNodo;	
 	}
 	
-	public Stringd
+	public Stringdjj
 	
 }
