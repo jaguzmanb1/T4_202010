@@ -24,13 +24,14 @@ public class Modelo {
 	 * Atributos del modelo del mundo
 	 */	
 
-	private ListaEncadenada<Comparendo> datos;
+	private Comparendo datos[];
 	/**
 	 * Constructor del modelo del mundo con capacidad predefinida
 	 */
 	public Modelo()
 	{
 		datos = new ListaEncadenada<Comparendo>();
+		cargarDatos();
 	}
 
 	/**
@@ -72,6 +73,7 @@ public class Modelo {
 
 			Comparendo comparendo;
 
+			
 			for (int i = 0 ; i < arr.length(); i++ ) {
 				id = arr.getJSONObject(i).getJSONObject("properties").getInt("OBJECTID");
 				fecha = arr.getJSONObject(i).getJSONObject("properties").getString("FECHA_HORA");
