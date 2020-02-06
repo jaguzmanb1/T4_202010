@@ -26,6 +26,12 @@ public class NodoStack<T> {
 		return p;
 	}
 	
+	public NodoStack<T> insertarElementoDespuesDelActual(NodoStack<T> pNodo)
+	{
+		pNodo.siguienteNodo = this;
+		return pNodo;	
+	}
 	
+	public String 
 	
 }
