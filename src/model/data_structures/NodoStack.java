@@ -1,9 +1,22 @@
 package model.data_structures;
 
-public class NodoStack<T> {
 
+/**
+ * Clase generica 
+ * Encadena el stck
+ * @param <T> Tipo de datos almacenados 
+ */
+public class NodoStack<T> {
+	
+	/**
+	 * El elemento el nodo
+	 */
 	private T elemento;
 	
+	
+	/**
+	 * El elelmto siguiente en la cadena
+	 */
 	private NodoStack<T> siguienteNodo;
 	
 	public NodoStack( T pInfo)
@@ -26,10 +39,15 @@ public class NodoStack<T> {
 		return p;
 	}
 	
-	public NodoStack<T> insertarElementoDespuesDelActual(NodoStack<T> pNodo)
+	public NodoStack<T> insertarElementoAntesDelActual(NodoStack<T> pNodo)
 	{
 		pNodo.siguienteNodo = this;
 		return pNodo;	
+	}
+	
+	public NodoStack<T> darSiguiente() 
+	{
+		return siguienteNodo;
 	}
 	
 	public String  toString() 
