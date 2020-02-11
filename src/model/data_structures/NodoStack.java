@@ -32,6 +32,9 @@ public class NodoStack<T> {
 		return pNodo;	
 	}
 	
-	public Stringdjj
+	public String  toString() 
+	{
+		return elemento.toString();
+	}
 	
 }
