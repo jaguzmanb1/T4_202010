@@ -39,25 +39,10 @@ public class Controller {
 					view.printMessage("--------- \nRealizar carga comparendos: ");
 				    modelo = new Modelo(); 
 				    modelo.cargarDatos();
-				    view.printMessage("Carga completada, hay un total de " + modelo.darTamano() + " registros");
+				    view.printMessage("Carga completada, hay un total de " + " registros");
 					break;
 
-				case 2:
-					view.printMessage("--------- \nDar numero a buscar: ");
-					dato = lector.nextInt();
-					respuesta = modelo.buscar(dato);
-					if ( respuesta != null )
-					{
-						view.printMessage("Dato encontrado: "+ respuesta);
-					}
-					else
-					{
-						view.printMessage("Dato NO encontrado");
-					}
-					view.printMessage("Numero actual de elementos " + modelo.darTamano() + "\n---------");						
-					break;
-					
-				case 3: 
+				case 2: 
 					view.printMessage("--------- \n Hasta pronto !! \n---------"); 
 					lector.close();
 					fin = true;
