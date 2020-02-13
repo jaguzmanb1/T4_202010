@@ -68,7 +68,6 @@ public class Modelo {
 
 		for (int i = 1 ; i < cantidad ; i++) {
 			Comparendo comparendo = queue.dequeue();
-			System.out.println(comparendo.toString());
 
 			if (comparendoTemp.darInfraccion().compareToIgnoreCase(comparendo.darInfraccion()) != 0) {
 				if (comparendosConsecutivosTemp.size() > comparendosConsecutivos.size()) {
@@ -79,19 +78,13 @@ public class Modelo {
 				comparendosConsecutivosTemp.enqueue(comparendo);
 				comparendoTemp = comparendo;
 
-
-				System.out.println("se creo el primer objeto del cluster");
-				System.out.println(comparendosConsecutivosTemp.size());
-
 			}
 			else if(comparendoTemp.darInfraccion().compareToIgnoreCase(comparendo.darInfraccion()) == 0) {
 				comparendosConsecutivosTemp.enqueue(comparendo);
-				System.out.println(comparendosConsecutivosTemp.size());
-				System.out.println(comparendosConsecutivos.size());
+
 
 
 				if (comparendosConsecutivosTemp.size() >= comparendosConsecutivos.size()) {
-					System.out.println("se anadio");
 					int size = comparendosConsecutivosTemp.size();
 					for (int j = 1 ; j < size ; j++) {
 						comparendosConsecutivos.enqueue(comparendosConsecutivosTemp.dequeue());
@@ -102,8 +95,6 @@ public class Modelo {
 			}
 		}
 		
-		System.out.println("fin");
-		System.out.println(comparendosConsecutivosTemp.size());
 		for (int i = 0 ; i < comparendosConsecutivos.size() ; i++) {
 			rta += comparendosConsecutivos.dequeue().toString() + "\n";
 		}
@@ -119,10 +110,8 @@ public class Modelo {
 		for (int i = 0 ; i < tamano && i < n ; i++) {
 			Comparendo comparendo = stack.pop();
 			System.out.println(comparendo.darInfraccion());
-			if (comparendo.darInfraccion().compareToIgnoreCase(tipoComparendo) == 0) {
+			if (comparendo.darInfraccion().equalsIgnoreCase(tipoComparendo)) {
 				rta.agregar(comparendo);
-				System.out.println("listo");
-
 			}
 		}
 		
