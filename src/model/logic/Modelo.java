@@ -1,7 +1,7 @@
 package model.logic;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
-import model.data_structures.ArregloDinamico;
+import model.data_structures.arregloDinamico;
 import model.data_structures.IArregloDinamico;
 import model.data_structures.ListaEncadenada;
 import model.data_structures.Queue;
@@ -26,16 +26,111 @@ public class Modelo {
 	 */	
 
 	private JSONArray datos;
-	
+
 	private Queue<Comparendo> queue;
-	
+
 	private Stack<Comparendo> stack;
 	/**
 	 * Constructor del modelo del mundo con capacidad predefinida
 	 */
 	public Modelo()
 	{
+		queue = new Queue<Comparendo>();
+		stack = new Stack<Comparendo>();
 		leerDatos();
+	}
+
+	public int darCantidadQueue() {
+		return queue.size();
+	}
+
+	public int darCantidadStack() {
+		return stack.size();
+	}
+
+	public String darPrimerElementoQueue() {
+		return stack.darPrimero().toString();
+	}
+
+	public String darPrimerElementoStack() {
+		return queue.darPrimerElemento().toString();
+	}
+
+	public String clusterConsecutivoMasGrande() {
+		Queue<Comparendo> comparendosConsecutivos = new Queue<Comparendo>();
+		Queue<Comparendo> comparendosConsecutivosTemp = new Queue<Comparendo>();
+
+		String rta = "";
+
+		Comparendo comparendoTemp = queue.dequeue();
+
+		int cantidad = queue.size();
+
+		for (int i = 1 ; i < cantidad ; i++) {
+			Comparendo comparendo = queue.dequeue();
+			System.out.println(comparendo.toString());
+
+			if (comparendoTemp.darInfraccion().compareToIgnoreCase(comparendo.darInfraccion()) != 0) {
+				if (comparendosConsecutivosTemp.size() > comparendosConsecutivos.size()) {
+					comparendosConsecutivos = comparendosConsecutivosTemp;
+				}
+
+				comparendosConsecutivosTemp.vaciar();
+				comparendosConsecutivosTemp.enqueue(comparendo);
+				comparendoTemp = comparendo;
+
+
+				System.out.println("se creo el primer objeto del cluster");
+				System.out.println(comparendosConsecutivosTemp.size());
+
+			}
+			else if(comparendoTemp.darInfraccion().compareToIgnoreCase(comparendo.darInfraccion()) == 0) {
+				comparendosConsecutivosTemp.enqueue(comparendo);
+				System.out.println(comparendosConsecutivosTemp.size());
+				System.out.println(comparendosConsecutivos.size());
+
+
+				if (comparendosConsecutivosTemp.size() >= comparendosConsecutivos.size()) {
+					System.out.println("se anadio");
+					int size = comparendosConsecutivosTemp.size();
+					for (int j = 1 ; j < size ; j++) {
+						comparendosConsecutivos.enqueue(comparendosConsecutivosTemp.dequeue());
+					}	
+				}
+				comparendoTemp = comparendo;
+
+			}
+		}
+		
+		System.out.println("fin");
+		System.out.println(comparendosConsecutivosTemp.size());
+		for (int i = 0 ; i < comparendosConsecutivos.size() ; i++) {
+			rta += comparendosConsecutivos.dequeue().toString() + "\n";
+		}
+
+		return rta;
+	}
+	
+	public String ultimosN(int n, String tipoComparendo) {
+		arregloDinamico<Comparendo> rta = new arregloDinamico<Comparendo>(10);
+		String sRta = "";
+		
+		int tamano = stack.size();
+		for (int i = 0 ; i < tamano && i < n ; i++) {
+			Comparendo comparendo = stack.pop();
+			System.out.println(comparendo.darInfraccion());
+			if (comparendo.darInfraccion().compareToIgnoreCase(tipoComparendo) == 0) {
+				rta.agregar(comparendo);
+				System.out.println("listo");
+
+			}
+		}
+		
+		for (int i = 0 ; i < rta.darTamano(); i++) {
+			sRta += rta.darElemento(i).toString() + "\n";
+		}
+		
+		return sRta;
 	}
 
 	public void cargarDatos() {
@@ -49,7 +144,7 @@ public class Modelo {
 
 		Comparendo comparendo;
 
-		for (int i = 0 ; i < datos.length(); i++ ) {
+		for (int i = datos.length() - 1 ; i > -1 ; i-- ) {
 			id = datos.getJSONObject(i).getJSONObject("properties").getInt("OBJECTID");
 			fecha = datos.getJSONObject(i).getJSONObject("properties").getString("FECHA_HORA");
 			clase = datos.getJSONObject(i).getJSONObject("properties").getString("CLASE_VEHI");
@@ -59,10 +154,10 @@ public class Modelo {
 			localidad = datos.getJSONObject(i).getJSONObject("properties").getString("LOCALIDAD");
 
 			comparendo = new Comparendo(id, fecha, clase, tipo, infraccion, descripcion, localidad);
-			
+
 			queue.enqueue(comparendo);
 			stack.push(comparendo);
-			
+
 		}
 	}
 

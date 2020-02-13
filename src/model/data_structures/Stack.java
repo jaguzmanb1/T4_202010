@@ -19,11 +19,6 @@ public class Stack<T> implements IStack<T> {
 		numeroElementos = 0;
 		
 	}
-
-	public int darLongitud()
-	{
-		return numeroElementos;
-	}
 	
 	public T pop() 
 	{
@@ -63,47 +58,10 @@ public class Stack<T> implements IStack<T> {
 			return false;
 		}
 	}
-	
-	public Iterator<T> iterador() 
-	{
-		
-		return  new Iterator<T>() {
-
-			private NodoStack<T> current = primerElemeto;
-			@Override
-			public boolean hasNext() {
-				// TODO Auto-generated method stub
-				return current != null;
-			}
-
-			@Override
-			public T next() {
-				// TODO Auto-generated method stub
-				if(!hasNext())
-					throw new NoSuchElementException();
-
-				NodoStack<T> item = current;
-				current = current.darSiguiente();
-				return item.darElemento();
-			}
-		};
-	}
-
-	@Override
-	public Iterator<T> iterator() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return numeroElementos;
 	}
+
 }

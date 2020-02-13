@@ -45,36 +45,18 @@ public class Queue<T> implements IQueue<T>{
 		numElems++;
 	}
 	
-	public NodeCola<T> darPrimero( ){
+	public NodeCola<T> darPrimerElemento( ){
 		return primero;
 	}
 	
-	public NodeCola<T> darUltimo( ){
-		return ultimo;
+	public void vaciar( ){
+		numElems = 0;
+		primero = null;
+		ultimo = null;
 	}
 	
-	@Override
-	public Iterator<T> iterator() {
-		return  new Iterator<T>() {
-
-			private NodeCola<T> current = primero;
-			@Override
-			public boolean hasNext() {
-				// TODO Auto-generated method stub
-				return current != null;
-			}
-
-			@Override
-			public T next() {
-				// TODO Auto-generated method stub
-				if(!hasNext())
-					return null;
-
-				NodeCola<T> item = current;
-				current = current.darSiguiente();
-				return item.darElemento();
-			}
-		};
+	public NodeCola<T> darUltimoElemento( ){
+		return ultimo;
 	}
 	
 }

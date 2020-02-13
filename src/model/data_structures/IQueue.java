@@ -1,6 +1,6 @@
 package model.data_structures;
 
-public interface IQueue<T> extends Iterable<T>{
+public interface IQueue<T>{
 		
 	public int size();
 	

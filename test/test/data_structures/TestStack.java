@@ -32,10 +32,10 @@ public class TestStack{
 	public void testEnqueue() {
 		
 		setUp();
-		assertEquals(5, test.darLongitud());
+		assertEquals(5, test.size());
 		assertEquals("Item5",test.darPrimero());
 		setUp2();
-		assertEquals(4, test.darLongitud());
+		assertEquals(4, test.size());
 		assertEquals("Item4",test.darPrimero());
 		
 		

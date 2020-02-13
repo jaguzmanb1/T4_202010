@@ -7,7 +7,7 @@ package model.data_structures;
  * @author Fernando De la Rosa
  *
  */
-public class ArregloDinamico<T extends Comparable<T>> implements IArregloDinamico<T> {
+public class arregloDinamico<T extends Comparable<T>> implements IArregloDinamico<T> {
 
 	private int tamanoMax;
 
@@ -16,7 +16,7 @@ public class ArregloDinamico<T extends Comparable<T>> implements IArregloDinamic
 	private T elementos[ ];
 
 	@SuppressWarnings("unchecked")
-	public ArregloDinamico( int max )
+	public arregloDinamico( int max )
 	{
 		elementos = (T[])new Comparable[max];
 		tamanoMax = max;
@@ -65,7 +65,15 @@ public class ArregloDinamico<T extends Comparable<T>> implements IArregloDinamic
 
 		return null;
 	}
-
+	
+	public boolean existe(T dato){
+		if (buscar(dato) != null) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 	public T eliminar(T dato) {
 		// TODO implementar
 		// Recomendacion: Usar el criterio de comparacion natural (metodo compareTo()) definido en Strings.
@@ -83,6 +91,12 @@ public class ArregloDinamico<T extends Comparable<T>> implements IArregloDinamic
 		}
 
 		return datoEliminar;
+	}
+	
+	public void vaciar(int max) {
+		elementos = (T[])new Comparable[max];
+		tamanoMax = max;
+		tamanoAct = 0;	
 	}
 
 }
