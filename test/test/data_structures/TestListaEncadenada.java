@@ -1,6 +1,6 @@
 package test.data_structures;
 
-import model.data_structures.ListaEncadenada;
+import model.data_structures.LinkedList;
 
 import static org.junit.Assert.*;
 
@@ -9,12 +9,12 @@ import org.junit.Test;
 
 public class TestListaEncadenada {
 
-	private ListaEncadenada<Integer> arreglo;
+	private LinkedList<Integer> arreglo;
 	private static int TAMANO=100;
 	
 	@Before
 	public void setUp1() {
-		arreglo= new ListaEncadenada<Integer>();
+		arreglo= new LinkedList<Integer>();
 	}
 
 	public void setUp2() {
@@ -28,7 +28,7 @@ public class TestListaEncadenada {
 		// TODO
 		setUp1();
 		assertTrue(arreglo != null);
-		assertEquals(0, arreglo.darLongitud());
+		assertEquals(0, arreglo.size());
 	}
 
 	@Test

@@ -3,7 +3,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
 import model.data_structures.arregloDinamico;
 import model.data_structures.IArregloDinamico;
-import model.data_structures.ListaEncadenada;
+import model.data_structures.LinkedList;
 import model.data_structures.Queue;
 import model.data_structures.Stack;
 import model.logic.Comparendo;
@@ -14,7 +14,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-import org.json.*;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 /**
  * Definicion del modelo del mundo
@@ -109,9 +110,10 @@ public class Modelo {
 		int tamano = stack.size();
 		for (int i = 0 ; i < tamano && i < n ; i++) {
 			Comparendo comparendo = stack.pop();
-			System.out.println(comparendo.darInfraccion());
 			if (comparendo.darInfraccion().equalsIgnoreCase(tipoComparendo)) {
 				rta.agregar(comparendo);
+				System.out.println(comparendo.darInfraccion());
+
 			}
 		}
 		

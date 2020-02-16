@@ -2,7 +2,7 @@ package model.data_structures;
 
 import model.data_structures.Node;
 
-public class ListaEncadenada <T extends Comparable>{
+public class LinkedList <T extends Comparable> implements ILinkedList<T>{
 
 	private Node<T> primero;
 
@@ -10,7 +10,7 @@ public class ListaEncadenada <T extends Comparable>{
 
 	private int numElems;
 
-	public ListaEncadenada( ){
+	public LinkedList( ){
 		primero = null;
 		ultimo = null;
 		numElems = 0;
@@ -24,7 +24,8 @@ public class ListaEncadenada <T extends Comparable>{
 		return primero;
 	}
 
-	public int darLongitud( ){
+	@Override
+	public int size( ){
 		return numElems;
 	}
 
@@ -46,6 +47,7 @@ public class ListaEncadenada <T extends Comparable>{
 		return null;
 	}
 
+	@Override
 	public void insertarAlFrente( T elemento ){
 		Node<T> nodo = new Node<T>( elemento );
 		if ( primero == null ){
@@ -59,6 +61,7 @@ public class ListaEncadenada <T extends Comparable>{
 		numElems++;
 	}
 
+	@Override
 	public void insertarAlFinal( T elemento )
 	{
 		Node<T> nodo = new Node<T>( elemento );
@@ -104,6 +107,13 @@ public class ListaEncadenada <T extends Comparable>{
 			numElems--;
 			return r;
 		}
+	}
+
+	@Override
+	public boolean isEmpty() {
+		if (numElems == 0)
+			return true;
+		return false;
 	}
 
 }
