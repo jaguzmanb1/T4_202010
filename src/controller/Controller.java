@@ -37,30 +37,15 @@ public class Controller {
 			switch(option){
 			case 1:
 				view.printMessage("--------- \nRealizar carga comparendos: ");
-				modelo = new Modelo(); 
 				modelo.cargarDatos();
-				view.printMessage("Carga completada, hay un total de " + modelo.darCantidadQueue() + " registros en la cola y " + modelo.darCantidadStack() + " registros en la pila");
-				view.printMessage("El primer elemento de la cola es: " + modelo.darPrimerElementoQueue());
-				view.printMessage("El primer elemento de la pila es: " + modelo.darPrimerElementoStack());
+				view.printMessage("Carga completada, hay un total de " + modelo.size() + " registros");
 
 				break;
 
 			case 2: 
-
-				view.printMessage("El cluster mas grande lo conforman los siguientes comparendos:");
-				view.printMessage(modelo.clusterConsecutivoMasGrande());
-				break;	
-
-			case 3: 
-				view.printMessage("Digite n:");
-				Scanner lector2 = new Scanner(System.in);
-				int n = lector2.nextInt();
-				view.printMessage("Digite la infraccion:");
-				Scanner lector3 = new Scanner(System.in);
-				String infraccion = lector3.nextLine();
-				
-				
-				view.printMessage(modelo.ultimosN(n, infraccion));
+				view.printMessage("--------- \n Hasta pronto !! \n---------"); 
+				lector.close();
+				fin = true;
 				break;	
 
 			default: 

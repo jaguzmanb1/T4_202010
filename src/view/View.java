@@ -15,9 +15,7 @@ public class View
 		public void printMenu()
 		{
 			System.out.println("1. Cargar datos");
-			System.out.println("2  Devolver cluster de comparendos consecutivos mas grande");
-			System.out.println("3. Dar n ultimos comparendos dado una infraccion");
-			System.out.println("4. Exit");
+			System.out.println("2. Exit");
 
 			System.out.println("Dar el numero de opcion a resolver, luego oprimir tecla Return: (e.g., 1):");
 		}

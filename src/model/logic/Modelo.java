@@ -1,7 +1,10 @@
 package model.logic;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
-import model.data_structures.arregloDinamico;
+import model.data_structures.ArregloDinamico;
 import model.data_structures.IArregloDinamico;
 import model.data_structures.LinkedList;
 import model.data_structures.Queue;
@@ -13,9 +16,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.json.JSONTokener;
 
 /**
  * Definicion del modelo del mundo
@@ -34,145 +40,52 @@ public class Modelo {
 	/**
 	 * Constructor del modelo del mundo con capacidad predefinida
 	 */
-	public Modelo()
-	{
+	public Modelo(){
 		queue = new Queue<Comparendo>();
-		stack = new Stack<Comparendo>();
-		leerDatos();
 	}
 
-	public int darCantidadQueue() {
+	public int size() {
 		return queue.size();
 	}
 
-	public int darCantidadStack() {
-		return stack.size();
-	}
-
-	public String darPrimerElementoQueue() {
-		return stack.darPrimero().toString();
-	}
-
-	public String darPrimerElementoStack() {
-		return queue.darPrimerElemento().toString();
-	}
-
-	public String clusterConsecutivoMasGrande() {
-		Queue<Comparendo> comparendosConsecutivos = new Queue<Comparendo>();
-		Queue<Comparendo> comparendosConsecutivosTemp = new Queue<Comparendo>();
-
-		String rta = "";
-
-		Comparendo comparendoTemp = queue.dequeue();
-
-		int cantidad = queue.size();
-
-		for (int i = 1 ; i < cantidad ; i++) {
-			Comparendo comparendo = queue.dequeue();
-
-			if (comparendoTemp.darInfraccion().compareToIgnoreCase(comparendo.darInfraccion()) != 0) {
-				if (comparendosConsecutivosTemp.size() > comparendosConsecutivos.size()) {
-					comparendosConsecutivos = comparendosConsecutivosTemp;
-				}
-
-				comparendosConsecutivosTemp.vaciar();
-				comparendosConsecutivosTemp.enqueue(comparendo);
-				comparendoTemp = comparendo;
-
-			}
-			else if(comparendoTemp.darInfraccion().compareToIgnoreCase(comparendo.darInfraccion()) == 0) {
-				comparendosConsecutivosTemp.enqueue(comparendo);
-
-
-
-				if (comparendosConsecutivosTemp.size() >= comparendosConsecutivos.size()) {
-					int size = comparendosConsecutivosTemp.size();
-					for (int j = 1 ; j < size ; j++) {
-						comparendosConsecutivos.enqueue(comparendosConsecutivosTemp.dequeue());
-					}	
-				}
-				comparendoTemp = comparendo;
-
-			}
-		}
-		
-		for (int i = 0 ; i < comparendosConsecutivos.size() ; i++) {
-			rta += comparendosConsecutivos.dequeue().toString() + "\n";
-		}
-
-		return rta;
-	}
-	
-	public String ultimosN(int n, String tipoComparendo) {
-		arregloDinamico<Comparendo> rta = new arregloDinamico<Comparendo>(10);
-		String sRta = "";
-		
-		int tamano = stack.size();
-		for (int i = 0 ; i < tamano && i < n ; i++) {
-			Comparendo comparendo = stack.pop();
-			if (comparendo.darInfraccion().equalsIgnoreCase(tipoComparendo)) {
-				rta.agregar(comparendo);
-				System.out.println(comparendo.darInfraccion());
-
-			}
-		}
-		
-		for (int i = 0 ; i < rta.darTamano(); i++) {
-			sRta += rta.darElemento(i).toString() + "\n";
-		}
-		
-		return sRta;
-	}
-
+	// Solucion de carga de datos publicada al curso Estructuras de Datos 2020-10
 	public void cargarDatos() {
-		int id;
-		String fecha;
-		String clase;
-		String tipo;
-		String infraccion;
-		String descripcion;
-		String localidad;
-
-		Comparendo comparendo;
-
-		for (int i = datos.length() - 1 ; i > -1 ; i-- ) {
-			id = datos.getJSONObject(i).getJSONObject("properties").getInt("OBJECTID");
-			fecha = datos.getJSONObject(i).getJSONObject("properties").getString("FECHA_HORA");
-			clase = datos.getJSONObject(i).getJSONObject("properties").getString("CLASE_VEHI");
-			tipo = datos.getJSONObject(i).getJSONObject("properties").getString("TIPO_SERVI");
-			infraccion = datos.getJSONObject(i).getJSONObject("properties").getString("INFRACCION");
-			descripcion = datos.getJSONObject(i).getJSONObject("properties").getString("DES_INFRAC");
-			localidad = datos.getJSONObject(i).getJSONObject("properties").getString("LOCALIDAD");
-
-			comparendo = new Comparendo(id, fecha, clase, tipo, infraccion, descripcion, localidad);
-
-			queue.enqueue(comparendo);
-			stack.push(comparendo);
-
-		}
-	}
-
-	public void leerDatos() {
-		String js = "";
+		JsonReader reader;
 		try {
-			File file = new File("data/comparendos_dei_2018_small.geojson"); 
-			BufferedReader br;
-			br = new BufferedReader(new FileReader(file));
-			String st;
-			while ((st = br.readLine()) != null) 
-				js += st;
-
-			JSONObject obj = new JSONObject(js);
-			datos = obj.getJSONArray("features");
-
-			br.close();
+			reader = new JsonReader(new FileReader("data/comparendos_dei_2018.geojson"));
+			JsonElement elem = JsonParser.parseReader(reader);
+			JsonArray e2 = elem.getAsJsonObject().get("features").getAsJsonArray();
 
 
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			SimpleDateFormat parser = new SimpleDateFormat("yyyy/MM/dd");
+
+			for(JsonElement e: e2) {
+				int OBJECTID = e.getAsJsonObject().get("properties").getAsJsonObject().get("OBJECTID").getAsInt();
+
+				String s = e.getAsJsonObject().get("properties").getAsJsonObject().get("FECHA_HORA").getAsString();	
+				Date FECHA_HORA = parser.parse(s); 
+
+				String MEDIO_DETE = e.getAsJsonObject().get("properties").getAsJsonObject().get("MEDIO_DETE").getAsString();
+				String CLASE_VEHI = e.getAsJsonObject().get("properties").getAsJsonObject().get("CLASE_VEHI").getAsString();
+				String TIPO_SERVI = e.getAsJsonObject().get("properties").getAsJsonObject().get("TIPO_SERVI").getAsString();
+				String INFRACCION = e.getAsJsonObject().get("properties").getAsJsonObject().get("INFRACCION").getAsString();
+				String DES_INFRAC = e.getAsJsonObject().get("properties").getAsJsonObject().get("DES_INFRAC").getAsString();	
+				String LOCALIDAD = e.getAsJsonObject().get("properties").getAsJsonObject().get("LOCALIDAD").getAsString();
+
+				double longitud = e.getAsJsonObject().get("geometry").getAsJsonObject().get("coordinates").getAsJsonArray()
+						.get(0).getAsDouble();
+
+				double latitud = e.getAsJsonObject().get("geometry").getAsJsonObject().get("coordinates").getAsJsonArray()
+						.get(1).getAsDouble();
+
+				Comparendo c = new Comparendo(OBJECTID, FECHA_HORA, CLASE_VEHI, TIPO_SERVI, INFRACCION , DES_INFRAC, LOCALIDAD, longitud, latitud);
+				queue.enqueue(c);
+			}
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			e.printStackTrace();
-		} 
-
+		}
 
 	}
 }
