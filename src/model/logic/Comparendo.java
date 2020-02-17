@@ -71,9 +71,10 @@ public class Comparendo implements Comparable<Comparendo>{
 		if (o.darObjectId() == this.objectId) {
 			return 0;
 		}
-		else {
+		else if(o.darObjectId() > this.objectId) {
 			return -1;
 		}
+		return 1;
 
 	}
 

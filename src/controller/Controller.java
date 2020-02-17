@@ -27,8 +27,6 @@ public class Controller {
 	{
 		Scanner lector = new Scanner(System.in);
 		boolean fin = false;
-		int dato = 0;
-		String respuesta = null;
 
 		while( !fin ){
 			view.printMenu();
@@ -39,6 +37,10 @@ public class Controller {
 				view.printMessage("--------- \nRealizar carga comparendos: ");
 				modelo.cargarDatos();
 				view.printMessage("Carga completada, hay un total de " + modelo.size() + " registros");
+				view.printMessage("El comparendo de mayor id es: " + modelo.darMayorId());
+				view.printMessage("La coordenada menor es: " + Double.toString(modelo.darMenorCord()[0]) + " , " + Double.toString(modelo.darMenorCord()[1]));
+				view.printMessage("La coordenada mayor es: " + Double.toString(modelo.darMayorCord()[0]) + " , " + Double.toString(modelo.darMayorCord()[1]));
+
 
 				break;
 
