@@ -113,5 +113,15 @@ public class Modelo {
 		}
 
 	}
+
+	public Object darTamano() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Object buscar(int i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
 
