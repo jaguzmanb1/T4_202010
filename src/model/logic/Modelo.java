@@ -22,38 +22,18 @@ public class Modelo {
 
 	private Queue<Comparendo> queue;
 
-	private Stack<Comparendo> stack;
-	
-	private Comparendo mayorId;
-	
-	private double menorCord[];
-	
-	private double mayorCord[];
+	private Stack<Comparendo> stack;	
 
 	/**
 	 * Constructor del modelo del mundo con capacidad predefinida
 	 */
 	public Modelo(){
 		queue = new Queue<Comparendo>();
-		menorCord = new double[]{0,100};
-		mayorCord = new double[]{-100,0};
 
 	}
 
 	public int size() {
 		return queue.size();
-	}
-	
-	public String darMayorId() {
-		return mayorId.toString();
-	}
-	
-	public double[] darMenorCord() {
-		return menorCord;
-	}
-	
-	public double[] darMayorCord() {
-		return mayorCord;
 	}
 
 	// Solucion de carga de datos publicada al curso Estructuras de Datos 2020-10
@@ -64,9 +44,6 @@ public class Modelo {
 			JsonElement elem = JsonParser.parseReader(reader);
 			JsonArray e2 = elem.getAsJsonObject().get("features").getAsJsonArray();
 			SimpleDateFormat parser = new SimpleDateFormat("yyyy/MM/dd");
-			
-			mayorId = new Comparendo(0, null, null, null, null , null, null, 0, 0);
-
 
 			for(JsonElement e: e2) {
 				int OBJECTID = e.getAsJsonObject().get("properties").getAsJsonObject().get("OBJECTID").getAsInt();
@@ -85,26 +62,6 @@ public class Modelo {
 
 				Comparendo c = new Comparendo(OBJECTID, FECHA_HORA, CLASE_VEHI, TIPO_SERVI, INFRACCION , DES_INFRAC, LOCALIDAD, longitud, latitud);
 				queue.enqueue(c);
-				
-				if (c.compareTo(mayorId) > 0) {
-					mayorId = c;
-				}
-				
-				if (longitud < menorCord[0]) {
-					menorCord[0] = longitud;
-				}
-				
-				if (latitud < menorCord[1]) {
-					menorCord[1] = latitud;
-				}
-				
-				if (longitud > mayorCord[0]) {
-					mayorCord[0] = longitud;
-				}
-				
-				if (latitud > mayorCord[1]) {
-					mayorCord[1] = latitud;
-				}
 			}
 
 		} catch (Exception e) {
