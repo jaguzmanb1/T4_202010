@@ -3,6 +3,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
+
+import model.data_structures.ArregloDinamico;
 import model.data_structures.Queue;
 import model.data_structures.Stack;
 import model.logic.Comparendo;
@@ -22,18 +24,34 @@ public class Modelo {
 
 	private Queue<Comparendo> queue;
 
-	private Stack<Comparendo> stack;	
+	private Stack<Comparendo> stack;
+	
+	Comparable<Comparendo>[] comparable; 
+	
+	private ArregloDinamico<Comparendo> arregloDinamico;
 
 	/**
 	 * Constructor del modelo del mundo con capacidad predefinida
 	 */
 	public Modelo(){
-		queue = new Queue<Comparendo>();
+		arregloDinamico = new ArregloDinamico<Comparendo>(10);
 
 	}
 
 	public int size() {
 		return queue.size();
+	}
+	
+	public Comparable[] copiarComparendos() {
+		
+		comparable = new Comparable[arregloDinamico.darTamano()];
+		
+		for (int i = 0 ; i < arregloDinamico.darTamano() ; i++ ) {
+			comparable[i] = arregloDinamico.darElemento(i);
+		}
+		
+		
+		return comparable;
 	}
 
 	// Solucion de carga de datos publicada al curso Estructuras de Datos 2020-10
@@ -61,7 +79,7 @@ public class Modelo {
 						.get(1).getAsDouble();
 
 				Comparendo c = new Comparendo(OBJECTID, FECHA_HORA, CLASE_VEHI, TIPO_SERVI, INFRACCION , DES_INFRAC, LOCALIDAD, longitud, latitud);
-				queue.enqueue(c);
+				arregloDinamico.agregar(c);
 			}
 
 		} catch (Exception e) {

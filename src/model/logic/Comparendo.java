@@ -29,11 +29,11 @@ public class Comparendo implements Comparable<Comparendo>{
 	public double darLongitud() {
 		return longitud;
 	}
-	
+
 	public double darLatitud() {
 		return latitud;
 	}
-	
+
 	public int darObjectId() {
 		return objectId;
 	}
@@ -68,14 +68,19 @@ public class Comparendo implements Comparable<Comparendo>{
 
 	@Override
 	public int compareTo(Comparendo o) {
-		if (o.darObjectId() == this.objectId) {
-			return 0;
+		if (o.darFecha() == this.darFecha()) {
+			if (o.darObjectId() == this.objectId) {
+				return 0;
+			}
+			else if(o.darObjectId() > this.objectId) {
+				return -1;
+			}
+			return 1;
 		}
-		else if(o.darObjectId() > this.objectId) {
+		else if(o.darFecha().compareTo(this.fechaHora) < 0) {
 			return -1;
 		}
 		return 1;
-
 	}
 
 }
