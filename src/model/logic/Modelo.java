@@ -39,7 +39,7 @@ public class Modelo {
 	}
 
 	public int size() {
-		return queue.size();
+		return arregloDinamico.darTamano();
 	}
 	
 	public Comparable[] copiarComparendos() {
@@ -58,20 +58,20 @@ public class Modelo {
 	public void cargarDatos() {
 		JsonReader reader;
 		try {
-			reader = new JsonReader(new FileReader("data/comparendos_dei_2018.geojson"));
+			reader = new JsonReader(new FileReader("data/Comparendos_DEI_2018_Bogotá_D.C.geojson"));
 			JsonElement elem = JsonParser.parseReader(reader);
 			JsonArray e2 = elem.getAsJsonObject().get("features").getAsJsonArray();
-			SimpleDateFormat parser = new SimpleDateFormat("yyyy/MM/dd");
+			SimpleDateFormat parser = new SimpleDateFormat("yyyy-MM-dd");
 
 			for(JsonElement e: e2) {
 				int OBJECTID = e.getAsJsonObject().get("properties").getAsJsonObject().get("OBJECTID").getAsInt();
 				String s = e.getAsJsonObject().get("properties").getAsJsonObject().get("FECHA_HORA").getAsString();	
-				Date FECHA_HORA = parser.parse(s); 
-				String MEDIO_DETE = e.getAsJsonObject().get("properties").getAsJsonObject().get("MEDIO_DETE").getAsString();
-				String CLASE_VEHI = e.getAsJsonObject().get("properties").getAsJsonObject().get("CLASE_VEHI").getAsString();
-				String TIPO_SERVI = e.getAsJsonObject().get("properties").getAsJsonObject().get("TIPO_SERVI").getAsString();
+				Date FECHA_HORA = parser.parse(s);
+				String MEDIO_DETE = e.getAsJsonObject().get("properties").getAsJsonObject().get("MEDIO_DETECCION").getAsString();
+				String CLASE_VEHI = e.getAsJsonObject().get("properties").getAsJsonObject().get("CLASE_VEHICULO").getAsString();
+				String TIPO_SERVI = e.getAsJsonObject().get("properties").getAsJsonObject().get("TIPO_SERVICIO").getAsString();
 				String INFRACCION = e.getAsJsonObject().get("properties").getAsJsonObject().get("INFRACCION").getAsString();
-				String DES_INFRAC = e.getAsJsonObject().get("properties").getAsJsonObject().get("DES_INFRAC").getAsString();	
+				String DES_INFRAC = e.getAsJsonObject().get("properties").getAsJsonObject().get("DES_INFRACCION").getAsString();	
 				String LOCALIDAD = e.getAsJsonObject().get("properties").getAsJsonObject().get("LOCALIDAD").getAsString();
 				double longitud = e.getAsJsonObject().get("geometry").getAsJsonObject().get("coordinates").getAsJsonArray()
 						.get(0).getAsDouble();

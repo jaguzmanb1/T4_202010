@@ -41,6 +41,13 @@ public class Controller {
 				break;
 
 			case 2: 
+				view.printMessage("--------- \nRealizar carga comparendos en arreglo comparable: ");
+				Comparable [] copia = modelo.copiarComparendos();
+				view.printMessage("Carga finalizada, hay un total de: " + Integer.toString(copia.length) + " comparendos en el arreglo comparable");
+				
+				break;
+			
+			case 3: 
 				view.printMessage("--------- \n Hasta pronto !! \n---------"); 
 				lector.close();
 				fin = true;
