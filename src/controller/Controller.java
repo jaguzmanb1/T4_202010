@@ -43,7 +43,7 @@ public class Controller {
 			case 2: 
 				view.printMessage("--------- \nRealizar carga comparendos en arreglo comparable: ");
 				Comparable [] copia = modelo.copiarComparendos();
-				view.printMessage("Carga finalizada, hay un total de: " + Integer.toString(copia.length) + " comparendos en el arreglo comparable");
+				view.printMessage("Copia asd finalizada, hay un total de: " + Integer.toString(copia.length) + " comparendos en el arreglo comparable");
 				
 				break;
 			
