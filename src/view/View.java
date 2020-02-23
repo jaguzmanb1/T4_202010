@@ -14,7 +14,7 @@ public class View
 	    
 		public void printMenu()
 		{
-			System.out.println("-------------------------------------- \n");
+			System.out.println("--------------------------------------");
 			System.out.println("1. Cargar datos");
 			System.out.println("2. Cargar datos en arreglo comparable");
 			System.out.println("3. Ordenar por Shell Sort");
