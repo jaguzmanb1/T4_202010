@@ -26,8 +26,10 @@ public class Modelo {
 	 * Atributos del modelo del mundo
 	 */	
 
+	@SuppressWarnings("unused")
 	private Queue<Comparendo> queue;
 
+	@SuppressWarnings("unused")
 	private Stack<Comparendo> stack;
 
 	Comparable<Comparendo>[] listaComparendosOrdenados; 
@@ -56,9 +58,7 @@ public class Modelo {
 
 		for (int i = 0 ; i < arregloDinamico.darTamano() ; i++ ) 
 		{
-		
 			listaComparendosOrdenados[i] = arregloDinamico.darElemento(i);
-
 			largo++;
 		}
 		return largo;
@@ -68,43 +68,60 @@ public class Modelo {
 	{
 
 		System.out.println("Ordenando...");
+		long startTime = System.currentTimeMillis();
 		ShellSort.shellSort(listaComparendosOrdenados);
-		System.out.println("Ordenada");	
-		System.out.println("Primer comparendo "+ listaComparendosOrdenados[1]);	
-		System.out.println("Último comparendo "+ listaComparendosOrdenados[listaComparendosOrdenados.length-1]);
+		long endTime = System.currentTimeMillis();  
+		long duration = endTime -startTime;
+		for (int i = 0; i < 10; i++) 
+		{
+			System.out.println("Primeros comparendos "+ listaComparendosOrdenados[i]);	
+		}
+		for (int i = listaComparendosOrdenados.length-10; i < listaComparendosOrdenados.length ; i++) 
+		{
+			System.out.println("Últimos comparendos "+ listaComparendosOrdenados[i]);	
+		}
+		  
+		System.out.println("Tiempo de ordenamiento: " + duration + " milisegundos");
 	}
 
 	public void merge() 
 	{
 
 		System.out.println("Ordenando...");
+		long startTime = System.currentTimeMillis();
 		MergeSort.mergeSort(listaComparendosOrdenados);
-		System.out.println("Ordenada");	
-		System.out.println("Primer comparendo "+ listaComparendosOrdenados[1]);	
-		System.out.println("Último comparendo "+ listaComparendosOrdenados[listaComparendosOrdenados.length-1]);
+		long endTime = System.currentTimeMillis();  
+		long duration = endTime -startTime;
+		for (int i = 0; i < 10; i++) 
+		{
+			System.out.println("Primeros comparendos "+ listaComparendosOrdenados[i]);	
+		}
+		for (int i = listaComparendosOrdenados.length-10; i < listaComparendosOrdenados.length ; i++) 
+		{
+			System.out.println("Últimos comparendos "+ listaComparendosOrdenados[i]);	
+		}
+		  
+		System.out.println("Tiempo de ordenamiento: " + duration + " milisegundos");
 	}
 
 	public void quick() 
 	{
 
 		System.out.println("Ordenando...");
+		long startTime = System.currentTimeMillis();
 		QuickSort.quickSort(listaComparendosOrdenados);
-		System.out.println("Ordenada");	
-		System.out.println("Primer comparendo "+ listaComparendosOrdenados[1]);	
-		System.out.println("Último comparendo "+ listaComparendosOrdenados[listaComparendosOrdenados.length-1]);
-	}
-
-	public void regresarLista()
-	{
-		for (int i = 0; i < listaComparendosOrdenados.length; i++) {
-			listaComparendosOrdenados[i] = listaComparendosOrdenados[i];
+		long endTime = System.currentTimeMillis();  
+		long duration = endTime -startTime;
+		for (int i = 0; i < 10; i++) 
+		{
+			System.out.println("Primeros comparendos "+ listaComparendosOrdenados[i]);	
 		}
-	}
-
-	public void regresarListas()
-	{
-		System.out.println("Primer comparendo ord "+ listaComparendosOrdenados[1]);	
-		System.out.println("Último comparendo ord "+ listaComparendosOrdenados[listaComparendosOrdenados.length-1]);
+		for (int i = listaComparendosOrdenados.length-10; i < listaComparendosOrdenados.length ; i++) 
+		{
+			System.out.println("Últimos comparendos "+ listaComparendosOrdenados[i]);	
+		}
+		  
+		System.out.println("Tiempo de ordenamiento: " + duration + " milisegundos");
 	}
 
 	// Solucion de carga de datos publicada al curso Estructuras de Datos 2020-10
@@ -115,7 +132,6 @@ public class Modelo {
 			JsonElement elem = JsonParser.parseReader(reader);
 			JsonArray e2 = elem.getAsJsonObject().get("features").getAsJsonArray();
 			SimpleDateFormat parser = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'.000Z'");
-
 
 			for(JsonElement e: e2) {
 				int OBJECTID = e.getAsJsonObject().get("properties").getAsJsonObject().get("OBJECTID").getAsInt();

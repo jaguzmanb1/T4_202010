@@ -75,10 +75,6 @@ public class Controller {
 				lector.close();
 				fin = true;
 				break;	
-			case 8: 
-				view.printMessage("--------- \n h \n---------"); 
-				modelo.regresarListas();
-				break;
 
 			default: 
 				view.printMessage("--------- \n Opcion Invalida !! \n---------");
