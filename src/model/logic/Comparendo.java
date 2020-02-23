@@ -66,7 +66,6 @@ public class Comparendo implements Comparable<Comparendo>{
 		return Integer.toString(objectId) + " - " + fechaHora + " - " + infraccion + " - " + claseVehiculo + " - " + tipoServicio + " - " + localidad + " - " + longitud + " - " + latitud;
 	}
 
-	@Override
 	public int compareTo(Comparendo o) {
 		if (o.darFecha() == this.darFecha()) {
 			if (o.darObjectId() == this.objectId) {
@@ -82,5 +81,7 @@ public class Comparendo implements Comparable<Comparendo>{
 		}
 		return 1;
 	}
+
+	
 
 }

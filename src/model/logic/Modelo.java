@@ -4,8 +4,12 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
 
+
 import model.data_structures.ArregloDinamico;
+import model.data_structures.MergeSort;
 import model.data_structures.Queue;
+import model.data_structures.QuickSort;
+import model.data_structures.ShellSort;
 import model.data_structures.Stack;
 import model.logic.Comparendo;
 
@@ -25,9 +29,9 @@ public class Modelo {
 	private Queue<Comparendo> queue;
 
 	private Stack<Comparendo> stack;
-	
-	Comparable<Comparendo>[] comparable; 
-	
+
+	Comparable<Comparendo>[] listaComparendosOrdenados; 
+
 	private ArregloDinamico<Comparendo> arregloDinamico;
 
 	/**
@@ -41,17 +45,66 @@ public class Modelo {
 	public int size() {
 		return arregloDinamico.darTamano();
 	}
-	
-	public Comparable[] copiarComparendos() {
+
+	@SuppressWarnings({ "unchecked" })
+	public int copiarComparendos() {
+
 		
-		comparable = new Comparable[arregloDinamico.darTamano()];
+		listaComparendosOrdenados =  new Comparable[arregloDinamico.darTamano()];
+
+		int largo = 0;
+
+		for (int i = 0 ; i < arregloDinamico.darTamano() ; i++ ) 
+		{
 		
-		for (int i = 0 ; i < arregloDinamico.darTamano() ; i++ ) {
-			comparable[i] = arregloDinamico.darElemento(i);
+			listaComparendosOrdenados[i] = arregloDinamico.darElemento(i);
+
+			largo++;
 		}
-		
-		
-		return comparable;
+		return largo;
+	}
+
+	public void shell() 
+	{
+
+		System.out.println("Ordenando...");
+		ShellSort.shellSort(listaComparendosOrdenados);
+		System.out.println("Ordenada");	
+		System.out.println("Primer comparendo "+ listaComparendosOrdenados[1]);	
+		System.out.println("Último comparendo "+ listaComparendosOrdenados[listaComparendosOrdenados.length-1]);
+	}
+
+	public void merge() 
+	{
+
+		System.out.println("Ordenando...");
+		MergeSort.mergeSort(listaComparendosOrdenados);
+		System.out.println("Ordenada");	
+		System.out.println("Primer comparendo "+ listaComparendosOrdenados[1]);	
+		System.out.println("Último comparendo "+ listaComparendosOrdenados[listaComparendosOrdenados.length-1]);
+	}
+
+	public void quick() 
+	{
+
+		System.out.println("Ordenando...");
+		QuickSort.quickSort(listaComparendosOrdenados);
+		System.out.println("Ordenada");	
+		System.out.println("Primer comparendo "+ listaComparendosOrdenados[1]);	
+		System.out.println("Último comparendo "+ listaComparendosOrdenados[listaComparendosOrdenados.length-1]);
+	}
+
+	public void regresarLista()
+	{
+		for (int i = 0; i < listaComparendosOrdenados.length; i++) {
+			listaComparendosOrdenados[i] = listaComparendosOrdenados[i];
+		}
+	}
+
+	public void regresarListas()
+	{
+		System.out.println("Primer comparendo ord "+ listaComparendosOrdenados[1]);	
+		System.out.println("Último comparendo ord "+ listaComparendosOrdenados[listaComparendosOrdenados.length-1]);
 	}
 
 	// Solucion de carga de datos publicada al curso Estructuras de Datos 2020-10
@@ -61,7 +114,8 @@ public class Modelo {
 			reader = new JsonReader(new FileReader("data/Comparendos_DEI_2018_Bogotá_D.C.geojson"));
 			JsonElement elem = JsonParser.parseReader(reader);
 			JsonArray e2 = elem.getAsJsonObject().get("features").getAsJsonArray();
-			SimpleDateFormat parser = new SimpleDateFormat("yyyy-MM-dd");
+			SimpleDateFormat parser = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'.000Z'");
+
 
 			for(JsonElement e: e2) {
 				int OBJECTID = e.getAsJsonObject().get("properties").getAsJsonObject().get("OBJECTID").getAsInt();

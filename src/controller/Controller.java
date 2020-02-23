@@ -3,6 +3,7 @@ package controller;
 import java.util.Scanner;
 
 import model.logic.Modelo;
+import model.data_structures.*;
 import view.View;
 
 public class Controller {
@@ -27,7 +28,8 @@ public class Controller {
 	{
 		Scanner lector = new Scanner(System.in);
 		boolean fin = false;
-
+		int largo = 0;
+		
 		while( !fin ){
 			view.printMenu();
 
@@ -42,16 +44,41 @@ public class Controller {
 
 			case 2: 
 				view.printMessage("--------- \nRealizar carga comparendos en arreglo comparable: ");
-				Comparable [] copia = modelo.copiarComparendos();
-				view.printMessage("Copia finalizada, hay un total de: " + Integer.toString(copia.length) + " comparendos en el arreglo comparable");
+				largo = modelo.copiarComparendos();
+				view.printMessage("Copia finalizada, hay un total de: " + largo + " comparendos en el arreglo comparable");
+				
+				break;
+				
+			case 3: 
+				view.printMessage("--------- \nOrdenar con Shell Sort: ");
+				modelo.shell();
+				view.printMessage("Ordenado comparendos en el arreglo comparable");
 				
 				break;
 			
-			case 3: 
+			case 4: 
+				view.printMessage("--------- \nOrdenar con Merge Sort: ");
+				modelo.merge();
+				view.printMessage("Ordenado comparendos en el arreglo comparable");
+				
+				break;
+				
+			case 5: 
+				view.printMessage("--------- \nOrdenar con Quick Sort: ");
+				modelo.quick();
+				view.printMessage("Ordenado comparendos en el arreglo comparable");
+				
+				break;
+				
+			case 6: 
 				view.printMessage("--------- \n Hasta pronto !! \n---------"); 
 				lector.close();
 				fin = true;
 				break;	
+			case 8: 
+				view.printMessage("--------- \n h \n---------"); 
+				modelo.regresarListas();
+				break;
 
 			default: 
 				view.printMessage("--------- \n Opcion Invalida !! \n---------");

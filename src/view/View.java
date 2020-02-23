@@ -16,7 +16,10 @@ public class View
 		{
 			System.out.println("1. Cargar datos");
 			System.out.println("2. Cargar datos en arreglo comparable");
-			System.out.println("3. Exit");
+			System.out.println("3. Ordenar por Shell Sort");
+			System.out.println("4. Ordenar por Merge Sort");
+			System.out.println("5. Ordenar por Quick Sort");
+			System.out.println("6. Exit");
 
 			System.out.println("Dar el numero de opcion a resolver, luego oprimir tecla Return: (e.g., 1):");
 		}
