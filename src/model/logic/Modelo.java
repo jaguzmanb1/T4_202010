@@ -127,8 +127,6 @@ public class Modelo {
 		System.out.println("Tiempo de ordenamiento: " + duration + " milisegundos");
 	}
 	
-	@SuppressWarnings("unchecked")
-	
 	public void maxHeapPQ(int pMuestra, String pClase) 
 	{
 		MaxHeapCPComparendos Lista = new MaxHeapCPComparendos(size());
@@ -166,6 +164,7 @@ public class Modelo {
 				int OBJECTID = e.getAsJsonObject().get("properties").getAsJsonObject().get("OBJECTID").getAsInt();
 				String s = e.getAsJsonObject().get("properties").getAsJsonObject().get("FECHA_HORA").getAsString();	
 				Date FECHA_HORA = parser.parse(s);
+				@SuppressWarnings("unused")
 				String MEDIO_DETE = e.getAsJsonObject().get("properties").getAsJsonObject().get("MEDIO_DETECCION").getAsString();
 				String CLASE_VEHI = e.getAsJsonObject().get("properties").getAsJsonObject().get("CLASE_VEHICULO").getAsString();
 				String TIPO_SERVI = e.getAsJsonObject().get("properties").getAsJsonObject().get("TIPO_SERVICIO").getAsString();
