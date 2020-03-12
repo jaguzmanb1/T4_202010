@@ -170,16 +170,16 @@ public class Modelo {
 	}
 	
 	
-	@SuppressWarnings("unchecked")
-	public void maxHeapPQ(int pMuestra, String pClase) 
+	public void maxHeapPQ( String pClase) 
 	{
-		MaxHeapCPComparendos Lista = new MaxHeapCPComparendos(size());
+		int pMuestra = maxPq.darNumElementos();
+		MaxHeapCPComparendos Lista = new MaxHeapCPComparendos(pMuestra);
 		System.out.println("Buscando comparendos...");
 		long startTime = System.currentTimeMillis();
 		
 		for (int i = 0; (Lista.darNumElementos() < pMuestra) && (i<size()) ; i++) 
 		{
-			Comparendo actual = (Comparendo) listaComparendosOrdenados[(int)(Math.random() * (size()))];	
+			Comparendo actual = (Comparendo) arregloDinamico.darElemento((int)(Math.random() * (size())));	
 			if (pClase.contains(actual.darClase())) 
 			{
 				Lista.agregar(actual);
