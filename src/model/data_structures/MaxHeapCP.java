@@ -87,7 +87,7 @@ public class MaxHeapCP<T extends Comparable<T>>
 	}
 
 	/**
-	 * Adelanta un elemento a su pocision donde este correctamente priorizado
+	 * Adelanta un elemento a su posicion donde este correctamente priorizado
 	 * @param pPoscision
 	 */
 	private void subirElem(int pPoscision) 

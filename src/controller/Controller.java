@@ -88,16 +88,11 @@ public class Controller {
 
 			case 4: 
 				view.printMessage("--------- \n Mostrar comparendos por clase HPQ: ");
-				view.printMessage("Numero de comparendos a buscar: ");
-				Scanner lector5 = new Scanner(System.in);
-				dato = lector5.nextLine();
-				view.printMessage("Clase de vehiculo: ");
+				view.printMessage("Clase(s)de vehiculo(s): ");
 				Scanner lector6 = new Scanner(System.in);
 				dato2 = lector6.nextLine();
-				modelo.maxHeapPQ(Integer.parseInt(dato), dato2);
-				view.printMessage("Ordenado comparendos en el arreglo comparable");
-				
-				break;	
+				modelo.maxHeapPQ(dato2);	
+				break;		
 				
 			case 5: 
 				view.printMessage("--------- \n Hasta pronto !! \n---------"); 

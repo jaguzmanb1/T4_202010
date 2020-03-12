@@ -11,13 +11,13 @@ import org.junit.Test;
 import model.data_structures.MaxHeapCP;
 import model.data_structures.MaxPQ;
 
-public class TestMaxHeapPQ 
+public class TestMaxPQ 
 {
-	private MaxHeapCP<Integer> arreglo;
+	private MaxPQ<Integer> arreglo;
 	
 	@Before
 	public void setUp1() {
-		arreglo= new MaxHeapCP<Integer>(5);
+		arreglo = new MaxPQ<Integer>();
 	}
 
 	public void setUp2() {
@@ -29,7 +29,7 @@ public class TestMaxHeapPQ
 	public void setUp3() {
 		Random rand = new Random();
 
-		arreglo = new MaxHeapCP<Integer>(200000);
+		arreglo = new MaxPQ<Integer>();
 		long startTime = System.currentTimeMillis();
 		for(int i =0; i< 200000; i++){
 			int r = rand.nextInt()*i;
@@ -41,31 +41,30 @@ public class TestMaxHeapPQ
 	}
 
 	@Test
+	public void testCrear() {
+		setUp1();
+		assertTrue(arreglo.isEmpty());
+		assertEquals(0, arreglo.darNumElementos());
+	}
+	
+	@Test
 	public void testCarga() {
 		setUp3();
 		long startTime = System.currentTimeMillis();
 		arreglo.sacarMax();
 		long endTime = System.currentTimeMillis();  
 		long duration = endTime -startTime;
-		System.out.println("Tardó sacando Max " + duration + " milisegundos" + arreglo.sacarMax());
-	}
-
-	
-	@Test
-	public void testCrearHeap() {
-		setUp1();
-		assertTrue(arreglo.esVacia());
-		assertEquals(0, arreglo.darNumElementos());
+		System.out.println("Tardó sacando Max " + duration + " milisegundos");
 	}
 
 	@Test
-	public void testSacarHeap() {
+	public void testSacarMax() {
 		setUp2();
 		assertEquals((Integer)4, arreglo.sacarMax());
 	}
 	
 	@Test
-	public void testDarMaxHeap() {
+	public void testDarMax() {
 		setUp2();
 		assertEquals((Integer)4, arreglo.darMax());
 	}
