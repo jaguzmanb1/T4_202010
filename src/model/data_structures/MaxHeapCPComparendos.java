@@ -118,7 +118,7 @@ public class MaxHeapCPComparendos
 	 */
 	private boolean comparar(int i, int j) 
 	{ 
-		return ((Comparendo) arregloColaDePrioridad[i]).darLatitud() > (((Comparendo) arregloColaDePrioridad[j]).darLatitud()) ;  
+		return ((Comparendo) arregloColaDePrioridad[i]).darLatitud() < (((Comparendo) arregloColaDePrioridad[j]).darLatitud()) ;  
 	} 
 	
 

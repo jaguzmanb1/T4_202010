@@ -88,7 +88,7 @@ public class Controller {
 
 			case 4: 
 				view.printMessage("--------- \n Mostrar comparendos por clase HPQ: ");
-				view.printMessage("Clase(s)de vehiculo(s): ");
+				view.printMessage("Clase(s)de vehiculo(s):  (EJEMPLO: 'MOTOCICLETA, CAMPERO'");
 				Scanner lector6 = new Scanner(System.in);
 				dato2 = lector6.nextLine();
 				modelo.maxHeapPQ(dato2);	
