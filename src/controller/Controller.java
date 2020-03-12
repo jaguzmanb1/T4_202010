@@ -91,9 +91,7 @@ public class Controller {
 				view.printMessage("Clase(s)de vehiculo(s): ");
 				Scanner lector6 = new Scanner(System.in);
 				dato2 = lector6.nextLine();
-				modelo.maxHeapPQ(dato2);
-				view.printMessage("Ordenado comparendos en el arreglo comparable");
-				
+				modelo.maxHeapPQ(dato2);	
 				break;	
 				
 			case 5: 

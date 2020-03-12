@@ -192,7 +192,7 @@ public class Modelo {
 			Comparendo sacado = Lista.sacarMax();
 			System.out.println("ID: " + sacado.darObjectId() + " | Clase: " + sacado.darClase() + " | Localizacion: " + sacado.darLatitud() + ", " + sacado.darLongitud());
 		}
-		System.out.println("Tiempo de ordenamiento: " + duration + " milisegundos");
+		System.out.println("Tiempo de busqueda: " + duration + " milisegundos");
 	}
 
 	// Solucion de carga de datos publicada al curso Estructuras de Datos 2020-10
