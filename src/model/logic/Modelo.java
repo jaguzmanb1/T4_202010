@@ -6,12 +6,12 @@ import com.google.gson.stream.JsonReader;
 
 
 import model.data_structures.ArregloDinamico;
+import model.data_structures.MaxHeapCP;
 import model.data_structures.MergeSort;
 import model.data_structures.Queue;
 import model.data_structures.QuickSort;
 import model.data_structures.ShellSort;
 import model.data_structures.Stack;
-import model.data_structures.MaxHeapCP;
 import model.data_structures.MaxHeapCPComparendos;
 import model.data_structures.MaxPQ;
 import model.logic.Comparendo;
@@ -125,10 +125,12 @@ public class Modelo {
 		System.out.println("Buscando comparendos...");
 		
 		long startTime = System.currentTimeMillis();
-		for (int i = 0; i < n ; i++) {
+		int cantidad = 0;
+		while (cantidad != n) {
 			Comparendo actual = maxPq.sacarMax();
 			if (pClase.buscar(actual.darClase()) != null) {
 				lista.agregar(actual);
+				cantidad++;
 			}
 		}
 		long endTime = System.currentTimeMillis();  
@@ -206,6 +208,7 @@ public class Modelo {
 				int OBJECTID = e.getAsJsonObject().get("properties").getAsJsonObject().get("OBJECTID").getAsInt();
 				String s = e.getAsJsonObject().get("properties").getAsJsonObject().get("FECHA_HORA").getAsString();	
 				Date FECHA_HORA = parser.parse(s);
+				@SuppressWarnings("unused")
 				String MEDIO_DETE = e.getAsJsonObject().get("properties").getAsJsonObject().get("MEDIO_DETECCION").getAsString();
 				String CLASE_VEHI = e.getAsJsonObject().get("properties").getAsJsonObject().get("CLASE_VEHICULO").getAsString();
 				String TIPO_SERVI = e.getAsJsonObject().get("properties").getAsJsonObject().get("TIPO_SERVICIO").getAsString();

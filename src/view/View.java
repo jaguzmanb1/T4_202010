@@ -48,7 +48,8 @@ public class View
 				System.out.println("No se encontro ningun comparendo");
 			}
 			else {
-				for (int i = 0 ; i < maxPQ.darNumElementos() ; i++) {
+				int cantidad = maxPQ.darNumElementos();
+				for (int i = 0 ; i < cantidad ; i++) {
 					printComparendo(maxPQ.sacarMax());
 				}
 			}
