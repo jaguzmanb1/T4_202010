@@ -1,18 +1,29 @@
 package model.data_structures;
 
-public class MaxHeapCP<T extends Comparable<T>> 
+import model.logic.Comparendo;
+
+public class MaxHeapCPComparendos
 {   
-	private T[] arregloColaDePrioridad;            
+	private Comparable<Comparendo>[] arregloColaDePrioridad;            
 	private int numeroElementos = 0;
 	
-	@SuppressWarnings("unchecked")
+	public static final String MOTOCICLETA = "MOTOCICLETA";
+	public static final String BICICLETA = "BICICLETA";
+	public static final String AUTOMOVIL = "AUTOMOVIL";
+	public static final String BUS = "BUS";
+	public static final String BUSETA = "BUSETA";
+	public static final String CAMPERO = "BUSETA";
+	public static final String CAMIONETA = "CAMIONETA";
+	
+	
 	/**
 	 * Crea un objeto de la clase
 	 * @param maxN
 	 */
-	public MaxHeapCP(int maxN)  
+	@SuppressWarnings("unchecked")
+	public MaxHeapCPComparendos(int maxN)  
 	{  
-		arregloColaDePrioridad = (T[]) new Comparable[maxN+1]; 
+		arregloColaDePrioridad = new Comparable[maxN+1]; 
 	}  
 
 	/**
@@ -36,7 +47,7 @@ public class MaxHeapCP<T extends Comparable<T>>
 	 * Para comparar la prioridad de dos elementos T se debe usar el comparador “natural” de la clase T.
 	 * @param pElementoAgregar
 	 */
-	public void agregar(T pElementoAgregar)  
+	public void agregar(Comparendo pElementoAgregar)  
 	{       
 		arregloColaDePrioridad[++numeroElementos] = pElementoAgregar;   
 		subirElem(numeroElementos);  
@@ -46,9 +57,9 @@ public class MaxHeapCP<T extends Comparable<T>>
 	 * Saca/atiende el elemento máximo en la cola y lo retorna; null en caso de cola vacía
 	 * @return Elemento eliminado
 	 */
-	public T sacarMax() 
+	public Comparendo sacarMax() 
 	{      
-		T max = arregloColaDePrioridad[1];         
+		Comparendo max = (Comparendo) arregloColaDePrioridad[1];         
 		intercambiar(1, numeroElementos--);             
 		arregloColaDePrioridad[numeroElementos+1] = null;           
 		bajarElem(1);                   
@@ -59,9 +70,9 @@ public class MaxHeapCP<T extends Comparable<T>>
 	 * Obtener el elemento máximo (sin sacarlo de la Cola); null en caso de cola vacía
 	 * @return Elemento maximo
 	 */
-	public T darMax()
+	public Comparendo darMax()
 	{
-		return arregloColaDePrioridad[1];
+		return (Comparendo) arregloColaDePrioridad[1];
 	}
 
 	/**
@@ -107,7 +118,7 @@ public class MaxHeapCP<T extends Comparable<T>>
 	 */
 	private boolean comparar(int i, int j) 
 	{ 
-		return arregloColaDePrioridad[i].compareTo(arregloColaDePrioridad[j]) < 0;  
+		return ((Comparendo) arregloColaDePrioridad[i]).darLatitud() > (((Comparendo) arregloColaDePrioridad[j]).darLatitud()) ;  
 	} 
 	
 
@@ -118,7 +129,7 @@ public class MaxHeapCP<T extends Comparable<T>>
 	 */
 	private void intercambiar(int i, int j)
 	{ 
-		T posTemporal = arregloColaDePrioridad[i]; 
+		Comparendo posTemporal = (Comparendo) arregloColaDePrioridad[i]; 
 		arregloColaDePrioridad[i] = arregloColaDePrioridad[j];
 		arregloColaDePrioridad[j] = posTemporal;  
 	}

@@ -29,6 +29,8 @@ public class Controller {
 		Scanner lector = new Scanner(System.in);
 		boolean fin = false;
 		int largo = 0;
+		String dato;
+		String dato2;
 		
 		while( !fin ){
 			view.printMenu();
@@ -76,6 +78,19 @@ public class Controller {
 				fin = true;
 				break;	
 
+			case 7: 
+				view.printMessage("--------- \n Mostrar comparendos por clase HPQ: ");
+				view.printMessage("Numero de comparendos a buscar: ");
+				Scanner lector1 = new Scanner(System.in);
+				dato = lector1.nextLine();
+				view.printMessage("Clase de vehiculo: ");
+				Scanner lector2 = new Scanner(System.in);
+				dato2 = lector2.nextLine();
+				modelo.maxHeapPQ(Integer.parseInt(dato), dato2);
+				view.printMessage("Ordenado comparendos en el arreglo comparable");
+				
+				break;	
+				
 			default: 
 				view.printMessage("--------- \n Opcion Invalida !! \n---------");
 				break;

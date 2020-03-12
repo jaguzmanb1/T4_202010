@@ -11,6 +11,8 @@ import model.data_structures.Queue;
 import model.data_structures.QuickSort;
 import model.data_structures.ShellSort;
 import model.data_structures.Stack;
+import model.data_structures.MaxHeapCP;
+import model.data_structures.MaxHeapCPComparendos;
 import model.logic.Comparendo;
 
 import java.io.FileReader;
@@ -33,6 +35,7 @@ public class Modelo {
 	private Stack<Comparendo> stack;
 
 	Comparable<Comparendo>[] listaComparendosOrdenados; 
+	Comparable<Comparendo>[] listaGen ;
 
 	private ArregloDinamico<Comparendo> arregloDinamico;
 
@@ -121,6 +124,32 @@ public class Modelo {
 			System.out.println("Últimos comparendos "+ listaComparendosOrdenados[i]);	
 		}
 		  
+		System.out.println("Tiempo de ordenamiento: " + duration + " milisegundos");
+	}
+	
+	@SuppressWarnings("unchecked")
+	
+	public void maxHeapPQ(int pMuestra, String pClase) 
+	{
+		MaxHeapCPComparendos Lista = new MaxHeapCPComparendos(size());
+		System.out.println("Buscando comparendos...");
+		long startTime = System.currentTimeMillis();
+		
+		for (int i = 0; (Lista.darNumElementos() < pMuestra) && (i<size()) ; i++) 
+		{
+			Comparendo actual = (Comparendo) listaComparendosOrdenados[(int)(Math.random() * (size()))];	
+			if (pClase.contains(actual.darClase())) 
+			{
+				Lista.agregar(actual);
+			}
+		}
+		long endTime = System.currentTimeMillis();  
+		long duration = endTime -startTime;
+		for (int i = 0; i < pMuestra; i++) 
+		{
+			Comparendo sacado = Lista.sacarMax();
+			System.out.println("ID: " + sacado.darObjectId() + " | Clase: " + sacado.darClase() + " | Localizacion: " + sacado.darLatitud() + ", " + sacado.darLongitud());
+		}
 		System.out.println("Tiempo de ordenamiento: " + duration + " milisegundos");
 	}
 
