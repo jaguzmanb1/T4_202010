@@ -11,7 +11,6 @@ import model.data_structures.Queue;
 import model.data_structures.QuickSort;
 import model.data_structures.ShellSort;
 import model.data_structures.Stack;
-import model.data_structures.MaxHeapCP;
 import model.data_structures.MaxHeapCPComparendos;
 import model.logic.Comparendo;
 
