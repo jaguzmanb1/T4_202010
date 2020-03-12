@@ -13,11 +13,13 @@ import model.data_structures.ShellSort;
 import model.data_structures.Stack;
 import model.data_structures.MaxHeapCP;
 import model.data_structures.MaxHeapCPComparendos;
+import model.data_structures.MaxPQ;
 import model.logic.Comparendo;
 
 import java.io.FileReader;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 
 /**
  * Definicion del modelo del mundo
@@ -38,33 +40,23 @@ public class Modelo {
 	Comparable<Comparendo>[] listaGen ;
 
 	private ArregloDinamico<Comparendo> arregloDinamico;
+	
+	private MaxPQ<Comparendo> maxPq;
+	
+	private MaxHeapCP<Comparendo> maxHeap;
 
 	/**
 	 * Constructor del modelo del mundo con capacidad predefinida
 	 */
 	public Modelo(){
 		arregloDinamico = new ArregloDinamico<Comparendo>(10);
+		maxPq = new MaxPQ<Comparendo>();
+		maxHeap = new MaxHeapCP<Comparendo>(6000);
 
 	}
 
 	public int size() {
 		return arregloDinamico.darTamano();
-	}
-
-	@SuppressWarnings({ "unchecked" })
-	public int copiarComparendos() {
-
-		
-		listaComparendosOrdenados =  new Comparable[arregloDinamico.darTamano()];
-
-		int largo = 0;
-
-		for (int i = 0 ; i < arregloDinamico.darTamano() ; i++ ) 
-		{
-			listaComparendosOrdenados[i] = arregloDinamico.darElemento(i);
-			largo++;
-		}
-		return largo;
 	}
 
 	public void shell() 
@@ -127,8 +119,56 @@ public class Modelo {
 		System.out.println("Tiempo de ordenamiento: " + duration + " milisegundos");
 	}
 	
-	@SuppressWarnings("unchecked")
+	public MaxPQ<Comparendo> maxPQ(int n, ArregloDinamico<String> pClase) 
+	{
+		MaxPQ<Comparendo> lista = new MaxPQ<Comparendo>();
+		System.out.println("Buscando comparendos...");
+		
+		long startTime = System.currentTimeMillis();
+		for (int i = 0; i < n ; i++) {
+			Comparendo actual = maxPq.sacarMax();
+			if (pClase.buscar(actual.darClase()) != null) {
+				lista.agregar(actual);
+			}
+		}
+		long endTime = System.currentTimeMillis();  
+		long duration = endTime -startTime;
+		System.out.println("Tardó buscando:  " + duration + " milisegundos");
+
+		
+		return lista;
+
+	}
 	
+	public void generarMuestra(int n) {
+		Random rand = new Random();
+		
+		long startTime = System.currentTimeMillis();
+		for (int i = 0 ; i < n ; i++){
+			int r = rand.nextInt(arregloDinamico.darTamano());
+			maxPq.agregar(arregloDinamico.darElemento(r));	
+		}
+		long endTime = System.currentTimeMillis();  
+		long duration = endTime -startTime;
+		System.out.println("Tardó insertando en la MaxPQ " + duration + " milisegundos");
+
+
+		startTime = System.currentTimeMillis();
+
+		for (int i = 0 ; i < n ; i++){
+			int r = rand.nextInt(arregloDinamico.darTamano());
+			maxHeap.agregar(arregloDinamico.darElemento(r));
+		}
+		endTime = System.currentTimeMillis();  
+		duration = endTime -startTime;
+		System.out.println("Tardó insertando en la MaxHeap " + duration + " milisegundos");
+		
+		System.out.println("Se cargaron " + maxHeap.darNumElementos() + " elementos");
+
+	}
+	
+	
+	@SuppressWarnings("unchecked")
 	public void maxHeapPQ(int pMuestra, String pClase) 
 	{
 		MaxHeapCPComparendos Lista = new MaxHeapCPComparendos(size());

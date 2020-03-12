@@ -2,6 +2,7 @@ package controller;
 
 import java.util.Scanner;
 
+import model.logic.Comparendo;
 import model.logic.Modelo;
 import model.data_structures.*;
 import view.View;
@@ -45,50 +46,63 @@ public class Controller {
 				break;
 
 			case 2: 
-				view.printMessage("--------- \nRealizar carga comparendos en arreglo comparable: ");
-				largo = modelo.copiarComparendos();
-				view.printMessage("Copia finalizada, hay un total de: " + largo + " comparendos en el arreglo comparable");
+				view.printMessage("--------- \nDigite n: ");
+				Scanner lector1 = new Scanner(System.in);
+				int n = lector1.nextInt();
+				modelo.generarMuestra(n);
 				
 				break;
 				
 			case 3: 
-				view.printMessage("--------- \nOrdenar con Shell Sort: ");
-				modelo.shell();
-				view.printMessage("Ordenado comparendos en el arreglo comparable");
+				ArregloDinamico<String> lista = new ArregloDinamico<String>(10);
+				view.printMessage("--------- \nDigite N: ");
+				Scanner lector2 = new Scanner(System.in);
+				int n2 = lector2.nextInt();
 				
+				Boolean fin2 = false;
+				Scanner lector3 = new Scanner(System.in);
+
+				while(!fin2) {
+					view.printMessage("--------- \nDigite 1. para agregar una clase a la lista ");
+					view.printMessage("--------- \nDigite 2. para finalizar la carga de clases : ");
+
+					int option2 = lector3.nextInt();
+					switch(option2) {
+						case 1:
+							view.printMessage("--------- \nDigite la clase de vehiculo a buscar ");
+							Scanner lector4 = new Scanner(System.in);
+							String clase = lector4.nextLine();
+							lista.agregar(clase);
+							break;
+							
+						case 2:
+							fin2 = true;
+							break;
+					}
+					
+				}
+				view.printMaxPQ(modelo.maxPQ(n2, lista));
+
 				break;
 			
-			case 4: 
-				view.printMessage("--------- \nOrdenar con Merge Sort: ");
-				modelo.merge();
-				view.printMessage("Ordenado comparendos en el arreglo comparable");
-				
-				break;
-				
-			case 5: 
-				view.printMessage("--------- \nOrdenar con Quick Sort: ");
-				modelo.quick();
-				view.printMessage("Ordenado comparendos en el arreglo comparable");
-				
-				break;
-				
-			case 6: 
-				view.printMessage("--------- \n Hasta pronto !! \n---------"); 
-				lector.close();
-				fin = true;
-				break;	
 
-			case 7: 
+			case 4: 
 				view.printMessage("--------- \n Mostrar comparendos por clase HPQ: ");
 				view.printMessage("Numero de comparendos a buscar: ");
-				Scanner lector1 = new Scanner(System.in);
-				dato = lector1.nextLine();
+				Scanner lector5 = new Scanner(System.in);
+				dato = lector5.nextLine();
 				view.printMessage("Clase de vehiculo: ");
-				Scanner lector2 = new Scanner(System.in);
-				dato2 = lector2.nextLine();
+				Scanner lector6 = new Scanner(System.in);
+				dato2 = lector6.nextLine();
 				modelo.maxHeapPQ(Integer.parseInt(dato), dato2);
 				view.printMessage("Ordenado comparendos en el arreglo comparable");
 				
+				break;	
+				
+			case 5: 
+				view.printMessage("--------- \n Hasta pronto !! \n---------"); 
+				lector.close();
+				fin = true;
 				break;	
 				
 			default: 

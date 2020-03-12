@@ -67,16 +67,10 @@ public class Comparendo implements Comparable<Comparendo>{
 	}
 
 	public int compareTo(Comparendo o) {
-		if (o.darFecha() == this.darFecha()) {
-			if (o.darObjectId() == this.objectId) {
-				return 0;
-			}
-			else if(o.darObjectId() > this.objectId) {
-				return -1;
-			}
-			return 1;
+		if (o.darLatitud() == this.darLatitud()) {
+			return 0;
 		}
-		else if(o.darFecha().compareTo(this.fechaHora) < 0) {
+		else if(this.latitud < o.darLatitud()) {
 			return -1;
 		}
 		return 1;
